@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Books</title>
+</head>
+<body>
+<h1>Books List</h1>
+
+<!-- Search Form -->
+<form action="/books" method="get">
+    <label for="title">Title:</label>
+    <input id="title" name="title" type="text">
+    <br>
+    <label for="author">Author:</label>
+    <input id="author" name="author" type="text">
+    <br>
+    <label for="publishYear">Publish Year:</label>
+    <input id="publishYear" name="publishYear" type="number">
+    <br>
+    <label for="genre">Genre:</label>
+    <input id="genre" name="genre" type="text">
+    <br>
+    <label for="pageCount">Page Count:</label>
+    <input id="pageCount" name="pageCount" type="number">
+    <br>
+    <label for="description">Description:</label>
+    <input id="description" name="description" type="text">
+    <br>
+    <button type="submit">Search</button>
+</form>
+<br><br>
+<!-- Books Table -->
+<a href="/addBook">Add Book</a>
+<br>
+<table>
+    <thead>
+    <tr>
+        <th>Title</th>
+        <th>Author</th>
+        <th>Publish Year</th>
+        <th>Genre</th>
+        <th>Page Count</th>
+        <th>Description</th>
+        <th>Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="book : ${books}">
+        <td th:text="${book.title}">Title</td>
+        <td th:text="${book.author}">Author</td>
+        <td th:text="${book.publishYear}">Year</td>
+        <td th:text="${book.genre}">Genre</td>
+        <td th:text="${book.pageCount}">Pages</td>
+        <td th:text="${book.description}">Description</td>
+        <td>
+            <a th:href="@{'/editBook/' + ${book.id}}">Edit</a>
+            <a th:href="@{'/deleteBook/' + ${book.id}}">Delete</a>
+        </td>
+    </tr>
+    </tbody>
+</table>
+
+</body>
+</html>
